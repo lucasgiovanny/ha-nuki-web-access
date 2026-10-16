@@ -1,0 +1,25 @@
+{
+  "entity": {
+    "switch": {
+      "enabled": {
+        "default": "mdi:dialpad",
+        "state": {
+          "off": "mdi:lock-off"
+        }
+      }
+    },
+    "datetime": {
+      "valid_from": {
+        "default": "mdi:calendar-start"
+      },
+      "valid_until": {
+        "default": "mdi:calendar-end"
+      }
+    }
+  },
+  "services": {
+    "set_access": {
+      "service": "mdi:key-change"
+    }
+  }
+}

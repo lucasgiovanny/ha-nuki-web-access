@@ -1,0 +1,94 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Nuki Web API token",
+        "description": "Create a token at web.nuki.io → API with only **View devices** and **View and manage authorizations**. Lock and unlock stay local; this integration only manages keypad codes.",
+        "data": {
+          "api_token": "API token"
+        }
+      },
+      "reauth_confirm": {
+        "title": "New Nuki Web API token",
+        "description": "Nuki Web refused the saved token. Paste a new one.",
+        "data": {
+          "api_token": "API token"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Nuki Web refused the token. Check that it has View devices and View and manage authorizations.",
+      "cannot_connect": "Could not reach Nuki Web.",
+      "no_locks": "This account has no smart locks."
+    },
+    "abort": {
+      "already_configured": "This Nuki account is already set up.",
+      "reauth_successful": "The token was updated.",
+      "wrong_account": "The token belongs to a different Nuki account."
+    }
+  },
+  "entity": {
+    "switch": {
+      "enabled": {
+        "name": "{code} enabled"
+      }
+    },
+    "datetime": {
+      "valid_from": {
+        "name": "{code} valid from"
+      },
+      "valid_until": {
+        "name": "{code} valid until"
+      }
+    }
+  },
+  "selector": {
+    "weekdays": {
+      "options": {
+        "mon": "Monday",
+        "tue": "Tuesday",
+        "wed": "Wednesday",
+        "thu": "Thursday",
+        "fri": "Friday",
+        "sat": "Saturday",
+        "sun": "Sunday"
+      }
+    }
+  },
+  "services": {
+    "set_access": {
+      "name": "Set keypad code access",
+      "description": "Changes when a keypad code works, and waits until Nuki Web shows the change.",
+      "fields": {
+        "enabled": {
+          "name": "Enabled",
+          "description": "Whether the code and its fingerprints open the door."
+        },
+        "valid_from": {
+          "name": "Valid from",
+          "description": "The code works from this moment."
+        },
+        "valid_until": {
+          "name": "Valid until",
+          "description": "The code stops working at this moment."
+        },
+        "no_date_limit": {
+          "name": "No date limit",
+          "description": "Remove both dates (applied before any date given here)."
+        },
+        "weekdays": {
+          "name": "Weekdays",
+          "description": "Days the code works."
+        },
+        "from_time": {
+          "name": "From time",
+          "description": "Daily start time. 00:00 to 00:00 means all day."
+        },
+        "until_time": {
+          "name": "Until time",
+          "description": "Daily end time."
+        }
+      }
+    }
+  }
+}

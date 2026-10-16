@@ -1,0 +1,94 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Token da API Nuki Web",
+        "description": "Crie um token em web.nuki.io → API apenas com **View devices** e **View and manage authorizations**. Trancar e abrir continuam locais; esta integração só gere os códigos do teclado.",
+        "data": {
+          "api_token": "Token da API"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Novo token da API Nuki Web",
+        "description": "A Nuki Web recusou o token guardado. Cole um novo.",
+        "data": {
+          "api_token": "Token da API"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "A Nuki Web recusou o token. Confirme que tem View devices e View and manage authorizations.",
+      "cannot_connect": "Não foi possível contactar a Nuki Web.",
+      "no_locks": "Esta conta não tem fechaduras."
+    },
+    "abort": {
+      "already_configured": "Esta conta Nuki já está configurada.",
+      "reauth_successful": "O token foi atualizado.",
+      "wrong_account": "O token pertence a outra conta Nuki."
+    }
+  },
+  "entity": {
+    "switch": {
+      "enabled": {
+        "name": "{code} ativo"
+      }
+    },
+    "datetime": {
+      "valid_from": {
+        "name": "{code} válido a partir de"
+      },
+      "valid_until": {
+        "name": "{code} válido até"
+      }
+    }
+  },
+  "selector": {
+    "weekdays": {
+      "options": {
+        "mon": "Segunda",
+        "tue": "Terça",
+        "wed": "Quarta",
+        "thu": "Quinta",
+        "fri": "Sexta",
+        "sat": "Sábado",
+        "sun": "Domingo"
+      }
+    }
+  },
+  "services": {
+    "set_access": {
+      "name": "Definir acesso do código do teclado",
+      "description": "Altera quando um código do teclado funciona e espera até a Nuki Web mostrar a alteração.",
+      "fields": {
+        "enabled": {
+          "name": "Ativo",
+          "description": "Se o código e as impressões digitais dele abrem a porta."
+        },
+        "valid_from": {
+          "name": "Válido a partir de",
+          "description": "O código passa a funcionar neste momento."
+        },
+        "valid_until": {
+          "name": "Válido até",
+          "description": "O código deixa de funcionar neste momento."
+        },
+        "no_date_limit": {
+          "name": "Sem limite de datas",
+          "description": "Remove as duas datas (aplicado antes das datas indicadas aqui)."
+        },
+        "weekdays": {
+          "name": "Dias da semana",
+          "description": "Dias em que o código funciona."
+        },
+        "from_time": {
+          "name": "Hora de início",
+          "description": "Início diário. 00:00 a 00:00 é o dia inteiro."
+        },
+        "until_time": {
+          "name": "Hora de fim",
+          "description": "Fim diário."
+        }
+      }
+    }
+  }
+}

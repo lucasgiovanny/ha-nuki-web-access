@@ -1,0 +1,5 @@
+{
+  "name": "Nuki Web Access",
+  "homeassistant": "2025.12.0",
+  "render_readme": true
+}

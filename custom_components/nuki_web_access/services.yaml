@@ -1,0 +1,30 @@
+set_access:
+  target:
+    entity:
+      integration: nuki_web_access
+      domain: switch
+  fields:
+    enabled:
+      selector:
+        boolean:
+    valid_from:
+      selector:
+        datetime:
+    valid_until:
+      selector:
+        datetime:
+    no_date_limit:
+      selector:
+        boolean:
+    weekdays:
+      selector:
+        select:
+          multiple: true
+          translation_key: weekdays
+          options: [mon, tue, wed, thu, fri, sat, sun]
+    from_time:
+      selector:
+        time:
+    until_time:
+      selector:
+        time:

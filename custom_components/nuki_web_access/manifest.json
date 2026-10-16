@@ -1,0 +1,13 @@
+{
+  "domain": "nuki_web_access",
+  "name": "Nuki Web Access",
+  "codeowners": [
+    "@lucasgiovanny"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/lucasgiovanny/ha-nuki-web-access",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/lucasgiovanny/ha-nuki-web-access/issues",
+  "version": "0.1.0"
+}
