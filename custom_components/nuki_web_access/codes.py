@@ -53,6 +53,10 @@ def build_update(auth: dict[str, Any], changes: dict[str, Any]) -> dict[str, Any
     """The code's current fields with the changes applied; a None date removes that limit."""
     # Nuki rejects or ignores partial updates, so unchanged fields are sent back as they are.
     body = {key: auth[key] for key in _UPDATABLE if key in auth}
+    # Without the weekday and time fields Nuki keeps the old dates; these defaults mean no restriction.
+    body.setdefault("allowedWeekDays", ALL_WEEKDAYS)
+    body.setdefault("allowedFromTime", 0)
+    body.setdefault("allowedUntilTime", 0)
     for key, value in changes.items():
         body[key] = format_date(value) if key in _DATES else value
     return body
@@ -64,7 +68,8 @@ def mismatches(auth: dict[str, Any], changes: dict[str, Any]) -> list[str]:
     for key, expected in changes.items():
         actual = auth.get(key)
         if key in _DATES:
-            if parse_date(actual) != (expected.astimezone(UTC) if expected else None):
+            # Nuki stores whole seconds, so compare what was actually sent.
+            if parse_date(actual) != parse_date(format_date(expected)):
                 wrong.append(key)
         elif actual != expected:
             wrong.append(key)

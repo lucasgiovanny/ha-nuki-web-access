@@ -36,8 +36,16 @@ def test_update_sends_back_unchanged_fields_and_none_clears_a_date():
         "enabled": False,
         "remoteAllowed": False,
         "allowedWeekDays": 64,
+        "allowedFromTime": 0,
+        "allowedUntilTime": 0,
         "allowedUntilDate": None,
     }
+
+
+def test_a_code_without_restrictions_sends_every_day_all_day():
+    body = codes.build_update({"name": "P", "enabled": True}, {"enabled": False})
+    assert body["allowedWeekDays"] == 127
+    assert body["allowedFromTime"] == body["allowedUntilTime"] == 0
 
 
 def test_dates_are_sent_in_utc():
@@ -57,3 +65,11 @@ def test_mismatches_compare_dates_as_moments():
     )
     assert codes.mismatches({}, {"allowedUntilDate": None, "enabled": False}) == ["enabled"]
     assert codes.mismatches({"enabled": True}, {"enabled": False}) == ["enabled"]
+
+
+def test_mismatches_ignore_the_milliseconds_nuki_drops():
+    sent = datetime(2026, 10, 20, 15, 0, 4, 512000, tzinfo=UTC)
+    assert (
+        codes.mismatches({"allowedFromDate": "2026-10-20T15:00:04.000Z"}, {"allowedFromDate": sent})
+        == []
+    )
